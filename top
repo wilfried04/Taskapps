@@ -1,0 +1,971 @@
+[1mdiff --cc .rspec[m
+[1mindex 5be63fcb,d23f3ea7..00000000[m
+[1m--- a/.rspec[m
+[1m+++ b/.rspec[m
+[1mdiff --cc Gemfile[m
+[1mindex 4aaf5481,b9f4d296..00000000[m
+[1m--- a/Gemfile[m
+[1m+++ b/Gemfile[m
+[1mdiff --cc app/controllers/tasks_controller.rb[m
+[1mindex 0a9770d8,9e1087ec..00000000[m
+[1m--- a/app/controllers/tasks_controller.rb[m
+[1m+++ b/app/controllers/tasks_controller.rb[m
+[1mdiff --cc app/models/task.rb[m
+[1mindex 08aded9e,a75066fd..00000000[m
+[1m--- a/app/models/task.rb[m
+[1m+++ b/app/models/task.rb[m
+[36m@@@ -3,10 -3,8 +3,15 @@@[m [mclass Task < ApplicationRecor[m
+    validates :name, presence:true, null:false,length:{maximum:60}[m
+    validates :content, presence:true, null:false[m
+    validates :end_time, presence:true, null:false[m
+[32m++<<<<<<< HEAD[m
+[32m +[m
+    enum statut: %i[not_started started completed][m
+    enum priority: %i[low medium high][m
+[32m +[m
+[32m++=======[m
+[32m++  enum statut: %i[not_started started completed][m
+[32m++  enum priority: %i[low medium high][m
+[32m++>>>>>>> 963830397040ae0c2ff4af9b66023131fcbcfcbc[m
+    scope :name_search,  -> (text_serach) {where("name LIKE ?", "%#{text_serach}%")}[m
+    scope :status_search,  -> (text_serach) {where(status: text_serach)}[m
+  end[m
+[1mdiff --cc app/views/tasks/index.html.erb[m
+[1mindex 8ecc02a4,f318c17c..00000000[m
+[1m--- a/app/views/tasks/index.html.erb[m
+[1m+++ b/app/views/tasks/index.html.erb[m
+[1mdiff --cc config/application.rb[m
+[1mindex 708a571f,baea3f17..00000000[m
+[1m--- a/config/application.rb[m
+[1m+++ b/config/application.rb[m
+[36m@@@ -19,6 -19,9 +19,12 @@@[m [mmodule TasksAp[m
+  [m
+  [m
+        config.generators do |g|[m
+[32m++<<<<<<< HEAD[m
+[32m++=======[m
+[32m+         g.assets false[m
+[32m+         g.helper false[m
+[32m+         g.jbuilder false[m
+[32m++>>>>>>> 963830397040ae0c2ff4af9b66023131fcbcfcbc[m
+          g.test_framework :rspec,[m
+                           model_specs: true,[m
+                           view_specs: false,[m
+[1mdiff --cc config/initializers/locale.rb[m
+[1mindex 676c9887,fc5c9313..00000000[m
+[1m--- a/config/initializers/locale.rb[m
+[1m+++ b/config/initializers/locale.rb[m
+[36m@@@ -1,2 -1,4 +1,7 @@@[m
+  I18n.config.available_locales = :ja[m
+  I18n.default_locale = :ja[m
+[32m++<<<<<<< HEAD[m
+[32m++=======[m
+[32m+ I18n.config.available_locales = :ja[m
+[31m -I18n.default_locale = :ja[m
+[32m++I18n.default_locale = :ja[m
+[32m++>>>>>>> 963830397040ae0c2ff4af9b66023131fcbcfcbc[m
+[1mdiff --cc config/locales/model.ja.yml[m
+[1mindex 6dade1c2,455fb790..00000000[m
+[1m--- a/config/locales/model.ja.yml[m
+[1m+++ b/config/locales/model.ja.yml[m
+[36m@@@ -6,7 -6,7 +6,11 @@@[m [mfr[m
+   attributes:[m
+   blog:[m
+   title: titre[m
+[32m++<<<<<<< HEAD[m
+[32m + content: content[m
+[32m++=======[m
+[32m+  content: detail[m
+[32m++>>>>>>> 963830397040ae0c2ff4af9b66023131fcbcfcbc[m
+   user:[m
+   title: titre[m
+   name: nom[m
+[1mdiff --cc db/schema.rb[m
+[1mindex 1d78f43f,455adcbc..00000000[m
+[1m--- a/db/schema.rb[m
+[1m+++ b/db/schema.rb[m
+[1mdiff --cc log/development.log[m
+[1mindex 03e1bda9,ae563a64..00000000[m
+[1m--- a/log/development.log[m
+[1m+++ b/log/development.log[m
+[36m@@@ -14379,6 -14381,7 +14381,10 @@@[m [mpuma (3.12.6) lib/puma/server.rb:706:i[m
+  puma (3.12.6) lib/puma/server.rb:476:in `process_client'[m
+  puma (3.12.6) lib/puma/server.rb:334:in `block in run'[m
+  puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'[m
+[32m++<<<<<<< HEAD[m
+[32m++=======[m
+[32m+ >>>>>>> 9427fb0aa6c97cedb71a204025e01e8a2926059c[m
+[32m++>>>>>>> 963830397040ae0c2ff4af9b66023131fcbcfcbc[m
+  DEPRECATION WARNING: Single arity template handlers are deprecated. Template handlers must[m
+  now accept two parameters, the view object and the source for the view object.[m
+  Change:[m
+[36m@@@ -14386,6 -14389,54 +14392,57 @@@[m
+  To:[m
+    >> Coffee::Rails::TemplateHandler.call(template, source)[m
+   (called from <main> at /home/wilromeo/Bureau/TasksApp/config/environment.rb:5)[m
+[32m+ <<<<<<< HEAD[m
+[32m++=======[m
+[32m++<<<<<<< HEAD[m
+[32m+ Started GET "/" for ::1 at 2020-10-01 21:02:37 +0100[m
+[32m+   [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m[m
+[32m+   [m
+[32m+ ActiveRecord::PendingMigrationError ([m
+[32m+ [m
+[32m+ Migrations are pending. To resolve this issue, run:[m
+[32m+ [m
+[32m+         rails db:migrate RAILS_ENV=development[m
+[32m+ [m
+[32m+ ):[m
+[32m+   [m
+[32m+ activerecord (6.0.3.3) lib/active_record/migration.rb:586:in `check_pending!'[m
+[32m+ activerecord (6.0.3.3) lib/active_record/migration.rb:564:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'[m
+[32m+ activesupport (6.0.3.3) lib/active_support/callbacks.rb:101:in `run_callbacks'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/executor.rb:14:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'[m
+[32m+ web-console (4.0.4) lib/web_console/middleware.rb:132:in `call_app'[m
+[32m+ web-console (4.0.4) lib/web_console/middleware.rb:28:in `block in call'[m
+[32m+ web-console (4.0.4) lib/web_console/middleware.rb:17:in `catch'[m
+[32m+ web-console (4.0.4) lib/web_console/middleware.rb:17:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'[m
+[32m+ railties (6.0.3.3) lib/rails/rack/logger.rb:37:in `call_app'[m
+[32m+ railties (6.0.3.3) lib/rails/rack/logger.rb:26:in `block in call'[m
+[32m+ activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:80:in `block in tagged'[m
+[32m+ activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:28:in `tagged'[m
+[32m+ activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:80:in `tagged'[m
+[32m+ railties (6.0.3.3) lib/rails/rack/logger.rb:26:in `call'[m
+[32m+ sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'[m
+[32m+ rack (2.2.3) lib/rack/method_override.rb:24:in `call'[m
+[32m+ rack (2.2.3) lib/rack/runtime.rb:22:in `call'[m
+[32m+ activesupport (6.0.3.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/executor.rb:14:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/static.rb:126:in `call'[m
+[32m+ rack (2.2.3) lib/rack/sendfile.rb:110:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'[m
+[32m+ railties (6.0.3.3) lib/rails/engine.rb:527:in `call'[m
+[32m+ puma (3.12.6) lib/puma/configuration.rb:227:in `call'[m
+[32m+ puma (3.12.6) lib/puma/server.rb:706:in `handle_request'[m
+[32m+ puma (3.12.6) lib/puma/server.rb:476:in `process_client'[m
+[32m+ puma (3.12.6) lib/puma/server.rb:334:in `block in run'[m
+[32m+ puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'[m
+[32m+ =======[m
+[32m++>>>>>>> 963830397040ae0c2ff4af9b66023131fcbcfcbc[m
+    [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8729435605278092565)[0m[m
+    [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m[m
+  Migrating to AddPriorityToTasks (20200929143754)[m
+[36m@@@ -14393,6 -14444,7 +14450,10 @@@[m
+    [1m[35m (32.0ms)[0m  [1m[35mALTER TABLE "tasks" ADD "priority" integer[0m[m
+    [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m[m
+    [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_advisory_unlock(8729435605278092565)[0m[m
+[32m++<<<<<<< HEAD[m
+[32m++=======[m
+[32m+ >>>>>>> 9427fb0aa6c97cedb71a204025e01e8a2926059c[m
+[32m++>>>>>>> 963830397040ae0c2ff4af9b66023131fcbcfcbc[m
+  DEPRECATION WARNING: Single arity template handlers are deprecated. Template handlers must[m
+  now accept two parameters, the view object and the source for the view object.[m
+  Change:[m
+[36m@@@ -14400,6 -14452,15 +14461,18 @@@[m
+  To:[m
+    >> Coffee::Rails::TemplateHandler.call(template, source)[m
+   (called from <main> at /home/wilromeo/Bureau/TasksApp/config/environment.rb:5)[m
+[32m++<<<<<<< HEAD[m
+[32m++=======[m
+[32m+ <<<<<<< HEAD[m
+[32m+   [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8729435605278092565)[0m[m
+[32m+   [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m[m
+[32m+ Migrating to CreateTasks (20200917173252)[m
+[32m+   [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m[m
+[32m+   [1m[35m (16.8ms)[0m  [1m[35mCREATE TABLE "tasks" ("id" bigserial primary key, "name" character varying NOT NULL, "detail" text NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m[m
+[32m+   [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m[m
+[32m+   [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(8729435605278092565)[0m[m
+[32m+ =======[m
+[32m++>>>>>>> 963830397040ae0c2ff4af9b66023131fcbcfcbc[m
+  Started GET "/" for ::1 at 2020-09-30 15:21:13 +0100[m
+    [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m[m
+    [m
+[36m@@@ -14446,6 -14507,7 +14519,10 @@@[m [mpuma (3.12.6) lib/puma/server.rb:706:i[m
+  puma (3.12.6) lib/puma/server.rb:476:in `process_client'[m
+  puma (3.12.6) lib/puma/server.rb:334:in `block in run'[m
+  puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'[m
+[32m++<<<<<<< HEAD[m
+[32m++=======[m
+[32m+ >>>>>>> 9427fb0aa6c97cedb71a204025e01e8a2926059c[m
+[32m++>>>>>>> 963830397040ae0c2ff4af9b66023131fcbcfcbc[m
+  DEPRECATION WARNING: Single arity template handlers are deprecated. Template handlers must[m
+  now accept two parameters, the view object and the source for the view object.[m
+  Change:[m
+[36m@@@ -14453,6 -14515,16 +14530,19 @@@[m
+  To:[m
+    >> Coffee::Rails::TemplateHandler.call(template, source)[m
+   (called from <main> at /home/wilromeo/Bureau/TasksApp/config/environment.rb:5)[m
+[32m++<<<<<<< HEAD[m
+[32m++=======[m
+[32m+ <<<<<<< HEAD[m
+[32m+   [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m[m
+[32m+   [1m[35m (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]][m
+[32m+   [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m[m
+[32m+   [1m[35m (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]][m
+[32m+   [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m[m
+[32m+   [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]][m
+[32m+   [1m[35m (331.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS "TasksApp_development"[0m[m
+[32m+   [1m[35m (328.2ms)[0m  [1m[35mDROP DATABASE IF EXISTS "TasksApp_test"[0m[m
+[32m+ =======[m
+[32m++>>>>>>> 963830397040ae0c2ff4af9b66023131fcbcfcbc[m
+    [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m[m
+    [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]][m
+    [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m[m
+[36m@@@ -14461,6 -14533,7 +14551,10 @@@[m
+    [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]][m
+    [1m[35m (325.6ms)[0m  [1m[35mDROP DATABASE IF EXISTS "TasksApp_development"[0m[m
+    [1m[35m (426.0ms)[0m  [1m[35mDROP DATABASE IF EXISTS "TasksApp_test"[0m[m
+[32m++<<<<<<< HEAD[m
+[32m++=======[m
+[32m+ >>>>>>> 9427fb0aa6c97cedb71a204025e01e8a2926059c[m
+[32m++>>>>>>> 963830397040ae0c2ff4af9b66023131fcbcfcbc[m
+  DEPRECATION WARNING: Single arity template handlers are deprecated. Template handlers must[m
+  now accept two parameters, the view object and the source for the view object.[m
+  Change:[m
+[36m@@@ -14468,6 -14541,8 +14562,11 @@@[m
+  To:[m
+    >> Coffee::Rails::TemplateHandler.call(template, source)[m
+   (called from <main> at /home/wilromeo/Bureau/TasksApp/config/environment.rb:5)[m
+[32m++<<<<<<< HEAD[m
+[32m++=======[m
+[32m+   [1m[35m (1553.3ms)[0m  [1m[35mCREATE DATABASE "TasksApp_development" ENCODING = 'unicode'[0m[m
+[32m+   [1m[35m (850.5ms)[0m  [1m[35mCREATE DATABASE "TasksApp_test" ENCODING = 'unicode'[0m[m
+[32m++>>>>>>> 963830397040ae0c2ff4af9b66023131fcbcfcbc[m
+  DEPRECATION WARNING: Single arity template handlers are deprecated. Template handlers must[m
+  now accept two parameters, the view object and the source for the view object.[m
+  Change:[m
+[36m@@@ -14475,8 -14550,26 +14574,31 @@@[m
+  To:[m
+    >> Coffee::Rails::TemplateHandler.call(template, source)[m
+   (called from <main> at /home/wilromeo/Bureau/TasksApp/config/environment.rb:5)[m
+[32m++<<<<<<< HEAD[m
+[32m++  [1m[35m (1189.3ms)[0m  [1m[35mCREATE DATABASE "TasksApp_development" ENCODING = 'unicode'[0m[m
+[32m++  [1m[35m (907.1ms)[0m  [1m[35mCREATE DATABASE "TasksApp_test" ENCODING = 'unicode'[0m[m
+[32m++=======[m
+[32m+ <<<<<<< HEAD[m
+[32m+   [1m[35m (315.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m[m
+[32m+   [1m[35m (96.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m[m
+[32m+   [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8729435605278092565)[0m[m
+[32m+   [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m[m
+[32m+ Migrating to CreateTasks (20200917173252)[m
+[32m+   [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m[m
+[32m+   [1m[35m (80.7ms)[0m  [1m[35mCREATE TABLE "tasks" ("id" bigserial primary key, "name" character varying NOT NULL, "detail" text NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m[m
+[32m+   [1m[36mprimary::SchemaMigration Create (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200917173252"]][m
+[32m+   [1m[35m (16.8ms)[0m  [1m[35mCOMMIT[0m[m
+[32m+   [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]][m
+[32m+   [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m[m
+[32m+   [1m[36mActiveRecord::InternalMetadata Create (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-10-01 21:03:31.675302"], ["updated_at", "2020-10-01 21:03:31.675302"]][m
+[32m+   [1m[35m (10.3ms)[0m  [1m[35mCOMMIT[0m[m
+[32m+   [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(8729435605278092565)[0m[m
+[32m+   [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m[m
+[32m+ =======[m
+    [1m[35m (1189.3ms)[0m  [1m[35mCREATE DATABASE "TasksApp_development" ENCODING = 'unicode'[0m[m
+    [1m[35m (907.1ms)[0m  [1m[35mCREATE DATABASE "TasksApp_test" ENCODING = 'unicode'[0m[m
+[32m+ >>>>>>> 9427fb0aa6c97cedb71a204025e01e8a2926059c[m
+[32m++>>>>>>> 963830397040ae0c2ff4af9b66023131fcbcfcbc[m
+  DEPRECATION WARNING: Single arity template handlers are deprecated. Template handlers must[m
+  now accept two parameters, the view object and the source for the view object.[m
+  Change:[m
+[36m@@@ -14484,6 -14577,48 +14606,51 @@@[m
+  To:[m
+    >> Coffee::Rails::TemplateHandler.call(template, source)[m
+   (called from <main> at /home/wilromeo/Bureau/TasksApp/config/environment.rb:5)[m
+[32m+ <<<<<<< HEAD[m
+[32m++=======[m
+[32m++<<<<<<< HEAD[m
+[32m+ Started GET "/" for ::1 at 2020-10-01 21:03:53 +0100[m
+[32m+   [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m[m
+[32m+ Processing by TasksController#index as HTML[m
+[32m+   Rendering tasks/index.html.erb within layouts/application[m
+[32m+   Rendered layouts/_task.html.erb (Duration: 0.6ms | Allocations: 206)[m
+[32m+   [1m[36mTask Load (1.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" ORDER BY "tasks"."created_at" DESC[0m[m
+[32m+   ↳ app/views/tasks/index.html.erb:5[m
+[32m+   Rendered tasks/index.html.erb within layouts/application (Duration: 6.2ms | Allocations: 1368)[m
+[32m+ Completed 200 OK in 4018ms (Views: 3998.8ms | ActiveRecord: 2.8ms | Allocations: 305382)[m
+[32m+ [m
+[32m+ [m
+[32m+ Started GET "/tasks" for ::1 at 2020-10-01 21:04:01 +0100[m
+[32m+ Processing by TasksController#index as HTML[m
+[32m+   Rendering tasks/index.html.erb within layouts/application[m
+[32m+   Rendered layouts/_task.html.erb (Duration: 0.4ms | Allocations: 71)[m
+[32m+   [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" ORDER BY "tasks"."created_at" DESC[0m[m
+[32m+   ↳ app/views/tasks/index.html.erb:5[m
+[32m+   Rendered tasks/index.html.erb within layouts/application (Duration: 4.0ms | Allocations: 762)[m
+[32m+ Completed 200 OK in 20ms (Views: 17.8ms | ActiveRecord: 0.5ms | Allocations: 13485)[m
+[32m+ [m
+[32m+ [m
+[32m+ Started GET "/tasks/new" for ::1 at 2020-10-01 21:04:02 +0100[m
+[32m+ Processing by TasksController#new as HTML[m
+[32m+   Rendering tasks/new.html.erb within layouts/application[m
+[32m+   Rendered layouts/_task.html.erb (Duration: 0.3ms | Allocations: 71)[m
+[32m+   Rendered tasks/_form.html.erb (Duration: 1985.8ms | Allocations: 571606)[m
+[32m+   Rendered tasks/new.html.erb within layouts/application (Duration: 1987.4ms | Allocations: 572050)[m
+[32m+ Completed 200 OK in 2013ms (Views: 2001.1ms | ActiveRecord: 4.0ms | Allocations: 587439)[m
+[32m+ [m
+[32m+ [m
+[32m+ Started GET "/tasks" for ::1 at 2020-10-01 21:04:05 +0100[m
+[32m+ Processing by TasksController#index as HTML[m
+[32m+   Rendering tasks/index.html.erb within layouts/application[m
+[32m+   Rendered layouts/_task.html.erb (Duration: 0.3ms | Allocations: 67)[m
+[32m+   [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" ORDER BY "tasks"."created_at" DESC[0m[m
+[32m+   ↳ app/views/tasks/index.html.erb:5[m
+[32m+   Rendered tasks/index.html.erb within layouts/application (Duration: 3.1ms | Allocations: 757)[m
+[32m+ Completed 200 OK in 23ms (Views: 21.5ms | ActiveRecord: 0.4ms | Allocations: 13400)[m
+[32m+ [m
+[32m+ [m
+[32m+ =======[m
+[32m++>>>>>>> 963830397040ae0c2ff4af9b66023131fcbcfcbc[m
+    [1m[35m (736.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m[m
+    [1m[35m (94.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m[m
+    [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8729435605278092565)[0m[m
+[36m@@@ -14493,6 -14628,7 +14660,10 @@@[m [mMigrating to AddPriorityToTasks (202009[m
+    [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "tasks" ADD "priority" integer[0m[m
+    [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m[m
+    [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(8729435605278092565)[0m[m
+[32m++<<<<<<< HEAD[m
+[32m++=======[m
+[32m+ >>>>>>> 9427fb0aa6c97cedb71a204025e01e8a2926059c[m
+[32m++>>>>>>> 963830397040ae0c2ff4af9b66023131fcbcfcbc[m
+  DEPRECATION WARNING: Single arity template handlers are deprecated. Template handlers must[m
+  now accept two parameters, the view object and the source for the view object.[m
+  Change:[m
+[36m@@@ -14500,12 -14636,63 +14671,69 @@@[m
+  To:[m
+    >> Coffee::Rails::TemplateHandler.call(template, source)[m
+   (called from <main> at /home/wilromeo/Bureau/TasksApp/config/environment.rb:5)[m
+[32m+ <<<<<<< HEAD[m
+[32m++=======[m
+[32m++<<<<<<< HEAD[m
+[32m+ Started GET "/tasks" for ::1 at 2020-10-01 21:04:35 +0100[m
+[32m+   [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m[m
+[32m+ Processing by TasksController#index as HTML[m
+[32m+   Rendering tasks/index.html.erb within layouts/application[m
+[32m+   Rendered layouts/_task.html.erb (Duration: 0.6ms | Allocations: 206)[m
+[32m+   [1m[36mTask Load (0.9ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" ORDER BY "tasks"."created_at" DESC[0m[m
+[32m+   ↳ app/views/tasks/index.html.erb:5[m
+[32m+   Rendered tasks/index.html.erb within layouts/application (Duration: 5.0ms | Allocations: 1368)[m
+[32m+ Completed 200 OK in 239ms (Views: 223.7ms | ActiveRecord: 4.8ms | Allocations: 292497)[m
+[32m+ [m
+[32m+ [m
+[32m+ Started GET "/tasks" for ::1 at 2020-10-01 21:04:40 +0100[m
+[32m+ Processing by TasksController#index as HTML[m
+[32m+   Rendering tasks/index.html.erb within layouts/application[m
+[32m+   Rendered layouts/_task.html.erb (Duration: 0.2ms | Allocations: 71)[m
+[32m+   [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" ORDER BY "tasks"."created_at" DESC[0m[m
+[32m+   ↳ app/views/tasks/index.html.erb:5[m
+[32m+   Rendered tasks/index.html.erb within layouts/application (Duration: 1.7ms | Allocations: 762)[m
+[32m+ Completed 200 OK in 17ms (Views: 16.1ms | ActiveRecord: 0.3ms | Allocations: 13404)[m
+[32m+ [m
+[32m+ [m
+[32m+ Started GET "/tasks" for ::1 at 2020-10-01 21:04:42 +0100[m
+[32m+ Processing by TasksController#index as HTML[m
+[32m+   Rendering tasks/index.html.erb within layouts/application[m
+[32m+   Rendered layouts/_task.html.erb (Duration: 0.2ms | Allocations: 65)[m
+[32m+   [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" ORDER BY "tasks"."created_at" DESC[0m[m
+[32m+   ↳ app/views/tasks/index.html.erb:5[m
+[32m+   Rendered tasks/index.html.erb within layouts/application (Duration: 2.1ms | Allocations: 755)[m
+[32m+ Completed 200 OK in 22ms (Views: 19.9ms | ActiveRecord: 0.4ms | Allocations: 13402)[m
+[32m+ [m
+[32m+ [m
+[32m+ Started GET "/tasks/new" for ::1 at 2020-10-01 21:04:43 +0100[m
+[32m+ Processing by TasksController#new as HTML[m
+[32m+   Rendering tasks/new.html.erb within layouts/application[m
+[32m+   Rendered layouts/_task.html.erb (Duration: 0.3ms | Allocations: 71)[m
+[32m+   Rendered tasks/_form.html.erb (Duration: 54.1ms | Allocations: 184771)[m
+[32m+   Rendered tasks/new.html.erb within layouts/application (Duration: 55.6ms | Allocations: 185215)[m
+[32m+ Completed 200 OK in 83ms (Views: 70.5ms | ActiveRecord: 4.4ms | Allocations: 200630)[m
+[32m+ [m
+[32m+ [m
+[32m+ Started GET "/tasks" for ::1 at 2020-10-01 21:04:47 +0100[m
+[32m+ Processing by TasksController#index as HTML[m
+[32m+   Rendering tasks/index.html.erb within layouts/application[m
+[32m+   Rendered layouts/_task.html.erb (Duration: 0.3ms | Allocations: 67)[m
+[32m+   [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" ORDER BY "tasks"."created_at" DESC[0m[m
+[32m+   ↳ app/views/tasks/index.html.erb:5[m
+[32m+   Rendered tasks/index.html.erb within layouts/application (Duration: 2.7ms | Allocations: 757)[m
+[32m+ Completed 200 OK in 17ms (Views: 15.4ms | ActiveRecord: 0.5ms | Allocations: 13395)[m
+[32m+ =======[m
+[32m++>>>>>>> 963830397040ae0c2ff4af9b66023131fcbcfcbc[m
+  Started GET "/" for ::1 at 2020-09-30 16:38:18 +0100[m
+    [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m[m
+    [m
+  ActiveRecord::PendingMigrationError ([m
+  [m
+  Migrations are pending. To resolve this issue, run:[m
+[32m++<<<<<<< HEAD[m
+[32m++=======[m
+[32m+ >>>>>>> 9427fb0aa6c97cedb71a204025e01e8a2926059c[m
+[32m++>>>>>>> 963830397040ae0c2ff4af9b66023131fcbcfcbc[m
+  [m
+          rails db:migrate RAILS_ENV=development[m
+  [m
+[36m@@@ -14553,6 -14740,54 +14781,57 @@@[m [mChange[m
+  To:[m
+    >> Coffee::Rails::TemplateHandler.call(template, source)[m
+   (called from <main> at /home/wilromeo/Bureau/TasksApp/config/environment.rb:5)[m
+[32m+ <<<<<<< HEAD[m
+[32m++=======[m
+[32m++<<<<<<< HEAD[m
+[32m+ Started GET "/tasks?utf8=%E2%9C%93&name=rose&statut=0&commit=search" for ::1 at 2020-10-01 21:50:15 +0100[m
+[32m+   [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m[m
+[32m+   [m
+[32m+ ActiveRecord::PendingMigrationError ([m
+[32m+ [m
+[32m+ Migrations are pending. To resolve this issue, run:[m
+[32m+ [m
+[32m+         rails db:migrate RAILS_ENV=development[m
+[32m+ [m
+[32m+ ):[m
+[32m+   [m
+[32m+ activerecord (6.0.3.3) lib/active_record/migration.rb:586:in `check_pending!'[m
+[32m+ activerecord (6.0.3.3) lib/active_record/migration.rb:564:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'[m
+[32m+ activesupport (6.0.3.3) lib/active_support/callbacks.rb:101:in `run_callbacks'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/executor.rb:14:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'[m
+[32m+ web-console (4.0.4) lib/web_console/middleware.rb:132:in `call_app'[m
+[32m+ web-console (4.0.4) lib/web_console/middleware.rb:28:in `block in call'[m
+[32m+ web-console (4.0.4) lib/web_console/middleware.rb:17:in `catch'[m
+[32m+ web-console (4.0.4) lib/web_console/middleware.rb:17:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'[m
+[32m+ railties (6.0.3.3) lib/rails/rack/logger.rb:37:in `call_app'[m
+[32m+ railties (6.0.3.3) lib/rails/rack/logger.rb:26:in `block in call'[m
+[32m+ activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:80:in `block in tagged'[m
+[32m+ activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:28:in `tagged'[m
+[32m+ activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:80:in `tagged'[m
+[32m+ railties (6.0.3.3) lib/rails/rack/logger.rb:26:in `call'[m
+[32m+ sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'[m
+[32m+ rack (2.2.3) lib/rack/method_override.rb:24:in `call'[m
+[32m+ rack (2.2.3) lib/rack/runtime.rb:22:in `call'[m
+[32m+ activesupport (6.0.3.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/executor.rb:14:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/static.rb:126:in `call'[m
+[32m+ rack (2.2.3) lib/rack/sendfile.rb:110:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'[m
+[32m+ railties (6.0.3.3) lib/rails/engine.rb:527:in `call'[m
+[32m+ puma (3.12.6) lib/puma/configuration.rb:227:in `call'[m
+[32m+ puma (3.12.6) lib/puma/server.rb:706:in `handle_request'[m
+[32m+ puma (3.12.6) lib/puma/server.rb:476:in `process_client'[m
+[32m+ puma (3.12.6) lib/puma/server.rb:334:in `block in run'[m
+[32m+ puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'[m
+[32m+ =======[m
+[32m++>>>>>>> 963830397040ae0c2ff4af9b66023131fcbcfcbc[m
+    [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8729435605278092565)[0m[m
+    [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m[m
+  Migrating to CreateTasks (20200909145834)[m
+[36m@@@ -14633,6 -14868,7 +14912,10 @@@[m [mChange[m
+  To:[m
+    >> Coffee::Rails::TemplateHandler.call(template, source)[m
+   (called from <main> at /home/wilromeo/Bureau/TasksApp/config/environment.rb:5)[m
+[32m++<<<<<<< HEAD[m
+[32m++=======[m
+[32m+ >>>>>>> 9427fb0aa6c97cedb71a204025e01e8a2926059c[m
+[32m++>>>>>>> 963830397040ae0c2ff4af9b66023131fcbcfcbc[m
+  DEPRECATION WARNING: Single arity template handlers are deprecated. Template handlers must[m
+  now accept two parameters, the view object and the source for the view object.[m
+  Change:[m
+[36m@@@ -14640,6 -14876,15 +14923,18 @@@[m
+  To:[m
+    >> Coffee::Rails::TemplateHandler.call(template, source)[m
+   (called from <main> at /home/wilromeo/Bureau/TasksApp/config/environment.rb:5)[m
+[32m++<<<<<<< HEAD[m
+[32m++=======[m
+[32m+ <<<<<<< HEAD[m
+[32m+   [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8729435605278092565)[0m[m
+[32m+   [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m[m
+[32m+ Migrating to CreateTasks (20200917173252)[m
+[32m+   [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m[m
+[32m+   [1m[35m (1.7ms)[0m  [1m[35mCREATE TABLE "tasks" ("id" bigserial primary key, "name" character varying NOT NULL, "detail" text NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m[m
+[32m+   [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m[m
+[32m+   [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(8729435605278092565)[0m[m
+[32m+ =======[m
+[32m++>>>>>>> 963830397040ae0c2ff4af9b66023131fcbcfcbc[m
+  Started GET "/" for ::1 at 2020-09-30 16:41:06 +0100[m
+    [1m[35m (1.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m[m
+  Processing by TasksController#index as HTML[m
+[36m@@@ -14664,6 -14909,7 +14959,10 @@@[m [mActionView::Template::Error (can not lo[m
+  app/views/layouts/_top.html.erb:7[m
+  app/views/layouts/_top.html.erb:4[m
+  app/views/tasks/index.html.erb:1[m
+[32m++<<<<<<< HEAD[m
+[32m++=======[m
+[32m+ >>>>>>> 9427fb0aa6c97cedb71a204025e01e8a2926059c[m
+[32m++>>>>>>> 963830397040ae0c2ff4af9b66023131fcbcfcbc[m
+  DEPRECATION WARNING: Single arity template handlers are deprecated. Template handlers must[m
+  now accept two parameters, the view object and the source for the view object.[m
+  Change:[m
+[36m@@@ -14671,6 -14917,17 +14970,20 @@@[m
+  To:[m
+    >> Coffee::Rails::TemplateHandler.call(template, source)[m
+   (called from <main> at /home/wilromeo/Bureau/TasksApp/config/environment.rb:5)[m
+[32m++<<<<<<< HEAD[m
+[32m++=======[m
+[32m+ <<<<<<< HEAD[m
+[32m+   [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m[m
+[32m+   [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]][m
+[32m+   [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m[m
+[32m+   [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]][m
+[32m+   [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m[m
+[32m+   [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]][m
+[32m+   [1m[35m (324.6ms)[0m  [1m[35mDROP DATABASE IF EXISTS "TasksApp_development"[0m[m
+[32m+   [1m[35m (329.0ms)[0m  [1m[35mDROP DATABASE IF EXISTS "TasksApp_test"[0m[m
+[32m+ =======[m
+[32m+ >>>>>>> 9427fb0aa6c97cedb71a204025e01e8a2926059c[m
+[32m++>>>>>>> 963830397040ae0c2ff4af9b66023131fcbcfcbc[m
+  DEPRECATION WARNING: Single arity template handlers are deprecated. Template handlers must[m
+  now accept two parameters, the view object and the source for the view object.[m
+  Change:[m
+[36m@@@ -14678,6 -14935,8 +14991,11 @@@[m
+  To:[m
+    >> Coffee::Rails::TemplateHandler.call(template, source)[m
+   (called from <main> at /home/wilromeo/Bureau/TasksApp/config/environment.rb:5)[m
+[32m++<<<<<<< HEAD[m
+[32m++=======[m
+[32m+   [1m[35m (982.6ms)[0m  [1m[35mCREATE DATABASE "TasksApp_development" ENCODING = 'unicode'[0m[m
+[32m+   [1m[35m (1008.4ms)[0m  [1m[35mCREATE DATABASE "TasksApp_test" ENCODING = 'unicode'[0m[m
+[32m++>>>>>>> 963830397040ae0c2ff4af9b66023131fcbcfcbc[m
+  DEPRECATION WARNING: Single arity template handlers are deprecated. Template handlers must[m
+  now accept two parameters, the view object and the source for the view object.[m
+  Change:[m
+[36m@@@ -14685,6 -14944,23 +15003,26 @@@[m
+  To:[m
+    >> Coffee::Rails::TemplateHandler.call(template, source)[m
+   (called from <main> at /home/wilromeo/Bureau/TasksApp/config/environment.rb:5)[m
+[32m++<<<<<<< HEAD[m
+[32m++=======[m
+[32m+ <<<<<<< HEAD[m
+[32m+   [1m[35m (100.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m[m
+[32m+   [1m[35m (107.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m[m
+[32m+   [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8729435605278092565)[0m[m
+[32m+   [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m[m
+[32m+ Migrating to CreateTasks (20200917173252)[m
+[32m+   [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m[m
+[32m+   [1m[35m (90.4ms)[0m  [1m[35mCREATE TABLE "tasks" ("id" bigserial primary key, "name" character varying NOT NULL, "detail" text NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m[m
+[32m+   [1m[36mprimary::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200917173252"]][m
+[32m+   [1m[35m (12.3ms)[0m  [1m[35mCOMMIT[0m[m
+[32m+   [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]][m
+[32m+   [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m[m
+[32m+   [1m[36mActiveRecord::InternalMetadata Create (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-10-01 21:51:06.076356"], ["updated_at", "2020-10-01 21:51:06.076356"]][m
+[32m+   [1m[35m (10.1ms)[0m  [1m[35mCOMMIT[0m[m
+[32m+   [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(8729435605278092565)[0m[m
+[32m+   [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m[m
+[32m+ =======[m
+[32m++>>>>>>> 963830397040ae0c2ff4af9b66023131fcbcfcbc[m
+  DEPRECATION WARNING: Single arity template handlers are deprecated. Template handlers must[m
+  now accept two parameters, the view object and the source for the view object.[m
+  Change:[m
+[36m@@@ -15800,20 -16076,6 +16138,21 @@@[m [mpuma (3.12.6) lib/puma/server.rb:334:i[m
+  puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'[m
+  DEPRECATION WARNING: Single arity template handlers are deprecated. Template handlers must[m
+  now accept two parameters, the view object and the source for the view object.[m
+[32m +Change:[m
+[32m +  >> Coffee::Rails::TemplateHandler.call(template)[m
+[32m +To:[m
+[32m +  >> Coffee::Rails::TemplateHandler.call(template, source)[m
+[32m + (called from <main> at /home/wilromeo/Bureau/TasksApp/config/environment.rb:5)[m
+[32m++<<<<<<< HEAD[m
+[32m +DEPRECATION WARNING: Single arity template handlers are deprecated. Template handlers must[m
+[32m +now accept two parameters, the view object and the source for the view object.[m
+[32m +Change:[m
+[32m +  >> Coffee::Rails::TemplateHandler.call(template)[m
+[32m +To:[m
+[32m +  >> Coffee::Rails::TemplateHandler.call(template, source)[m
+[32m + (called from <main> at /home/wilromeo/Bureau/TasksApp/config/environment.rb:5)[m
+[32m +DEPRECATION WARNING: Single arity template handlers are deprecated. Template handlers must[m
+[32m +now accept two parameters, the view object and the source for the view object.[m
+  Change:[m
+    >> Coffee::Rails::TemplateHandler.call(template)[m
+  To:[m
+[36m@@@ -15821,30 -16083,472 +16160,498 @@@[m
+   (called from <main> at /home/wilromeo/Bureau/TasksApp/config/environment.rb:5)[m
+  An enum element in Task uses the prefix 'not_'. This will cause a conflict with auto generated negative scopes.[m
+  Creating scope :not_started. Overwriting existing method Task.not_started.[m
+[32m +Started GET "/" for ::1 at 2020-10-05 09:41:35 +0100[m
+[32m +  [1m[35m (31.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m[m
+[32m +Processing by TasksController#index as HTML[m
+[32m +  Rendering tasks/index.html.erb within layouts/application[m
+[32m +  Rendered layouts/_top.html.erb (Duration: 80.6ms | Allocations: 189130)[m
+[32m +  [1m[36mTask Load (85.7ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" ORDER BY "tasks"."created_at" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 4], ["OFFSET", 0]][m
+[32m +  ↳ app/views/tasks/index.html.erb:15[m
+[32m +  Rendered layouts/_footer.html.erb (Duration: 0.4ms | Allocations: 82)[m
+[32m +  Rendered tasks/index.html.erb within layouts/application (Duration: 253.6ms | Allocations: 196349)[m
+[32m +Completed 200 OK in 713ms (Views: 503.1ms | ActiveRecord: 179.5ms | Allocations: 515834)[m
+[32m +[m
+[32m +[m
+[32m +Started GET "/images/apps.jpg" for ::1 at 2020-10-05 09:41:37 +0100[m
+[32m +  [m
+[32m +ActionController::RoutingError (No route matches [GET] "/images/apps.jpg"):[m
+[32m +  [m
+[32m +actionpack (6.0.3.3) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'[m
+[31m- web-console (4.0.4) lib/web_console/middleware.rb:132:in `call_app'[m
+[31m- web-console (4.0.4) lib/web_console/middleware.rb:28:in `block in call'[m
+[31m- web-console (4.0.4) lib/web_console/middleware.rb:17:in `catch'[m
+[31m- web-console (4.0.4) lib/web_console/middleware.rb:17:in `call'[m
+[31m- actionpack (6.0.3.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'[m
+[31m- railties (6.0.3.3) lib/rails/rack/logger.rb:37:in `call_app'[m
+[31m- railties (6.0.3.3) lib/rails/rack/logger.rb:26:in `block in call'[m
+[32m++=======[m
+[32m++An enum element in Task uses the prefix 'not_'. This will cause a conflict with auto generated negative scopes.[m
+[32m++Creating scope :not_started. Overwriting existing method Task.not_started.[m
+[32m+ Started GET "/" for ::1 at 2020-10-01 21:25:45 +0100[m
+[32m+   [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m[m
+[32m+   [m
+[32m+ ActiveRecord::PendingMigrationError ([m
+[32m+ [m
+[32m+ Migrations are pending. To resolve this issue, run:[m
+[32m+ [m
+[32m+         rails db:migrate RAILS_ENV=development[m
+[32m+ [m
+[32m+ ):[m
+[32m+   [m
+[32m+ activerecord (6.0.3.3) lib/active_record/migration.rb:586:in `check_pending!'[m
+[32m+ activerecord (6.0.3.3) lib/active_record/migration.rb:564:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'[m
+[32m+ activesupport (6.0.3.3) lib/active_support/callbacks.rb:101:in `run_callbacks'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/executor.rb:14:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'[m
+[32m++>>>>>>> 963830397040ae0c2ff4af9b66023131fcbcfcbc[m
+[32m+ web-console (4.0.4) lib/web_console/middleware.rb:132:in `call_app'[m
+[32m+ web-console (4.0.4) lib/web_console/middleware.rb:28:in `block in call'[m
+[32m+ web-console (4.0.4) lib/web_console/middleware.rb:17:in `catch'[m
+[32m+ web-console (4.0.4) lib/web_console/middleware.rb:17:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'[m
+[32m+ railties (6.0.3.3) lib/rails/rack/logger.rb:37:in `call_app'[m
+[32m+ railties (6.0.3.3) lib/rails/rack/logger.rb:26:in `block in call'[m
+[32m+ activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:80:in `block in tagged'[m
+[32m+ activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:28:in `tagged'[m
+[32m+ activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:80:in `tagged'[m
+[32m+ railties (6.0.3.3) lib/rails/rack/logger.rb:26:in `call'[m
+[32m+ sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'[m
+[32m+ rack (2.2.3) lib/rack/method_override.rb:24:in `call'[m
+[32m+ rack (2.2.3) lib/rack/runtime.rb:22:in `call'[m
+[32m+ activesupport (6.0.3.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/executor.rb:14:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/static.rb:126:in `call'[m
+[32m+ rack (2.2.3) lib/rack/sendfile.rb:110:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'[m
+[32m+ railties (6.0.3.3) lib/rails/engine.rb:527:in `call'[m
+[32m+ puma (3.12.6) lib/puma/configuration.rb:227:in `call'[m
+[32m+ puma (3.12.6) lib/puma/server.rb:706:in `handle_request'[m
+[32m+ puma (3.12.6) lib/puma/server.rb:476:in `process_client'[m
+[32m+ puma (3.12.6) lib/puma/server.rb:334:in `block in run'[m
+[32m+ puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'[m
+[32m+ DEPRECATION WARNING: Single arity template handlers are deprecated. Template handlers must[m
+[32m+ now accept two parameters, the view object and the source for the view object.[m
+[32m+ Change:[m
+[32m+   >> Coffee::Rails::TemplateHandler.call(template)[m
+[32m+ To:[m
+[32m+   >> Coffee::Rails::TemplateHandler.call(template, source)[m
+[32m+  (called from <main> at /home/wilromeo/Bureau/TasksApp/config/environment.rb:5)[m
+[32m+ An enum element in Task uses the prefix 'not_'. This will cause a conflict with auto generated negative scopes.[m
+[32m+ Creating scope :not_started. Overwriting existing method Task.not_started.[m
+[32m++<<<<<<< HEAD[m
+[32m++=======[m
+[32m+   [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8729435605278092565)[0m[m
+[32m+   [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m[m
+[32m+ Migrating to CreateTasks (20200909145834)[m
+[32m+   [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m[m
+[32m+   [1m[35m (1.9ms)[0m  [1m[35mCREATE TABLE "tasks" ("id" bigserial primary key, "name" character varying NOT NULL, "content" text NOT NULL, "end_time" date NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m[m
+[32m+   [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m[m
+[32m+   [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(8729435605278092565)[0m[m
+[32m++>>>>>>> 963830397040ae0c2ff4af9b66023131fcbcfcbc[m
+[32m+ DEPRECATION WARNING: Single arity template handlers are deprecated. Template handlers must[m
+[32m+ now accept two parameters, the view object and the source for the view object.[m
+[32m+ Change:[m
+[32m+   >> Coffee::Rails::TemplateHandler.call(template)[m
+[32m+ To:[m
+[32m+   >> Coffee::Rails::TemplateHandler.call(template, source)[m
+[32m+  (called from <main> at /home/wilromeo/Bureau/TasksApp/config/environment.rb:5)[m
+[32m+ An enum element in Task uses the prefix 'not_'. This will cause a conflict with auto generated negative scopes.[m
+[32m+ Creating scope :not_started. Overwriting existing method Task.not_started.[m
+[32m++<<<<<<< HEAD[m
+[32m++=======[m
+[32m+   [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m[m
+[32m+   [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]][m
+[32m+   [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m[m
+[32m+   [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]][m
+[32m+   [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m[m
+[32m+   [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]][m
+[32m+   [1m[35m (334.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS "TasksApp_development"[0m[m
+[32m+   [1m[35m (326.6ms)[0m  [1m[35mDROP DATABASE IF EXISTS "TasksApp_test"[0m[m
+[32m+ DEPRECATION WARNING: Single arity template handlers are deprecated. Template handlers must[m
+[32m+ now accept two parameters, the view object and the source for the view object.[m
+[32m+ Change:[m
+[32m+   >> Coffee::Rails::TemplateHandler.call(template)[m
+[32m+ To:[m
+[32m+   >> Coffee::Rails::TemplateHandler.call(template, source)[m
+[32m+  (called from <main> at /home/wilromeo/Bureau/TasksApp/config/environment.rb:5)[m
+[32m+ An enum element in Task uses the prefix 'not_'. This will cause a conflict with auto generated negative scopes.[m
+[32m+ Creating scope :not_started. Overwriting existing method Task.not_started.[m
+[32m+   [1m[35m (1051.1ms)[0m  [1m[35mCREATE DATABASE "TasksApp_development" ENCODING = 'unicode'[0m[m
+[32m+   [1m[35m (852.9ms)[0m  [1m[35mCREATE DATABASE "TasksApp_test" ENCODING = 'unicode'[0m[m
+[32m+ DEPRECATION WARNING: Single arity template handlers are deprecated. Template handlers must[m
+[32m+ now accept two parameters, the view object and the source for the view object.[m
+[32m+ Change:[m
+[32m+   >> Coffee::Rails::TemplateHandler.call(template)[m
+[32m+ To:[m
+[32m+   >> Coffee::Rails::TemplateHandler.call(template, source)[m
+[32m+  (called from <main> at /home/wilromeo/Bureau/TasksApp/config/environment.rb:5)[m
+[32m+ An enum element in Task uses the prefix 'not_'. This will cause a conflict with auto generated negative scopes.[m
+[32m+ Creating scope :not_started. Overwriting existing method Task.not_started.[m
+[32m+   [1m[35m (615.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m[m
+[32m+   [1m[35m (97.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m[m
+[32m+   [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8729435605278092565)[0m[m
+[32m+   [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m[m
+[32m+ Migrating to CreateTasks (20200909145834)[m
+[32m+   [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m[m
+[32m+   [1m[35m (92.9ms)[0m  [1m[35mCREATE TABLE "tasks" ("id" bigserial primary key, "name" character varying NOT NULL, "content" text NOT NULL, "end_time" date NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m[m
+[32m+   [1m[36mprimary::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200909145834"]][m
+[32m+   [1m[35m (11.8ms)[0m  [1m[35mCOMMIT[0m[m
+[32m+ Migrating to AddColumnToTask (20200915093425)[m
+[32m+   [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m[m
+[32m+   [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "tasks" ADD "statut" integer[0m[m
+[32m+   [1m[36mprimary::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200915093425"]][m
+[32m+   [1m[35m (23.1ms)[0m  [1m[35mCOMMIT[0m[m
+[32m+ Migrating to AddIndexToTasks (20200915104106)[m
+[32m+   [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m[m
+[32m+   [1m[35m (43.6ms)[0m  [1m[35mCREATE  INDEX  "index_tasks_on_name_and_statut" ON "tasks"  ("name", "statut")[0m[m
+[32m+   [1m[36mprimary::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200915104106"]][m
+[32m+   [1m[35m (15.5ms)[0m  [1m[35mCOMMIT[0m[m
+[32m+ Migrating to AddPriorityToTasks (20200915104929)[m
+[32m+   [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m[m
+[32m+   [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "tasks" ADD "priority" integer[0m[m
+[32m+   [1m[36mprimary::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200915104929"]][m
+[32m+   [1m[35m (20.0ms)[0m  [1m[35mCOMMIT[0m[m
+[32m+   [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]][m
+[32m+   [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m[m
+[32m+   [1m[36mActiveRecord::InternalMetadata Create (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-10-01 21:26:40.103675"], ["updated_at", "2020-10-01 21:26:40.103675"]][m
+[32m+   [1m[35m (12.7ms)[0m  [1m[35mCOMMIT[0m[m
+[32m+   [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(8729435605278092565)[0m[m
+[32m+   [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m[m
+[32m+ DEPRECATION WARNING: Single arity template handlers are deprecated. Template handlers must[m
+[32m+ now accept two parameters, the view object and the source for the view object.[m
+[32m+ Change:[m
+[32m+   >> Coffee::Rails::TemplateHandler.call(template)[m
+[32m+ To:[m
+[32m+   >> Coffee::Rails::TemplateHandler.call(template, source)[m
+[32m+  (called from <main> at /home/wilromeo/Bureau/TasksApp/config/environment.rb:5)[m
+[32m+ An enum element in Task uses the prefix 'not_'. This will cause a conflict with auto generated negative scopes.[m
+[32m+ Creating scope :not_started. Overwriting existing method Task.not_started.[m
+[32m+ Started GET "/" for ::1 at 2020-10-01 21:26:53 +0100[m
+[32m+   [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m[m
+[32m+ Processing by TasksController#index as HTML[m
+[32m+   Rendering tasks/index.html.erb within layouts/application[m
+[32m+   Rendered layouts/_top.html.erb (Duration: 63.7ms | Allocations: 186972)[m
+[32m+   [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" ORDER BY "tasks"."created_at" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 4], ["OFFSET", 0]][m
+[32m+   ↳ app/views/tasks/index.html.erb:15[m
+[32m+   Rendered layouts/_footer.html.erb (Duration: 0.8ms | Allocations: 82)[m
+[32m+   Rendered tasks/index.html.erb within layouts/application (Duration: 74.5ms | Allocations: 189478)[m
+[32m+ Completed 200 OK in 367ms (Views: 354.8ms | ActiveRecord: 2.8ms | Allocations: 509187)[m
+[32m+ [m
+[32m+ [m
+[32m+ Started GET "/images/apps.jpg" for ::1 at 2020-10-01 21:26:53 +0100[m
+[32m+   [m
+[32m+ ActionController::RoutingError (No route matches [GET] "/images/apps.jpg"):[m
+[32m+   [m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'[m
+[32m+ web-console (4.0.4) lib/web_console/middleware.rb:132:in `call_app'[m
+[32m+ web-console (4.0.4) lib/web_console/middleware.rb:28:in `block in call'[m
+[32m+ web-console (4.0.4) lib/web_console/middleware.rb:17:in `catch'[m
+[32m+ web-console (4.0.4) lib/web_console/middleware.rb:17:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'[m
+[32m+ railties (6.0.3.3) lib/rails/rack/logger.rb:37:in `call_app'[m
+[32m+ railties (6.0.3.3) lib/rails/rack/logger.rb:26:in `block in call'[m
+[32m+ activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:80:in `block in tagged'[m
+[32m+ activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:28:in `tagged'[m
+[32m+ activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:80:in `tagged'[m
+[32m+ railties (6.0.3.3) lib/rails/rack/logger.rb:26:in `call'[m
+[32m+ sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'[m
+[32m+ rack (2.2.3) lib/rack/method_override.rb:24:in `call'[m
+[32m+ rack (2.2.3) lib/rack/runtime.rb:22:in `call'[m
+[32m+ activesupport (6.0.3.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/executor.rb:14:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/static.rb:126:in `call'[m
+[32m+ rack (2.2.3) lib/rack/sendfile.rb:110:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'[m
+[32m+ railties (6.0.3.3) lib/rails/engine.rb:527:in `call'[m
+[32m+ puma (3.12.6) lib/puma/configuration.rb:227:in `call'[m
+[32m+ puma (3.12.6) lib/puma/server.rb:706:in `handle_request'[m
+[32m+ puma (3.12.6) lib/puma/server.rb:476:in `process_client'[m
+[32m+ puma (3.12.6) lib/puma/server.rb:334:in `block in run'[m
+[32m+ puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'[m
+[32m+ Started GET "/tasks/new" for ::1 at 2020-10-01 21:27:07 +0100[m
+[32m+ Processing by TasksController#new as HTML[m
+[32m+   Rendering tasks/new.html.erb within layouts/application[m
+[32m+   Rendered layouts/_task.html.erb (Duration: 0.5ms | Allocations: 183)[m
+[32m+   Rendered tasks/_form.html.erb (Duration: 5.4ms | Allocations: 3331)[m
+[32m+   Rendered tasks/new.html.erb within layouts/application (Duration: 8.0ms | Allocations: 4032)[m
+[32m+ Completed 200 OK in 40ms (Views: 23.6ms | ActiveRecord: 4.1ms | Allocations: 27021)[m
+[32m+ [m
+[32m+ [m
+[32m+ Started GET "/tasks" for ::1 at 2020-10-01 21:27:10 +0100[m
+[32m+ Processing by TasksController#index as HTML[m
+[32m+   Rendering tasks/index.html.erb within layouts/application[m
+[32m+   Rendered layouts/_top.html.erb (Duration: 2.1ms | Allocations: 2201)[m
+[32m+   [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" ORDER BY "tasks"."created_at" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 4], ["OFFSET", 0]][m
+[32m+   ↳ app/views/tasks/index.html.erb:15[m
+[32m+   Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)[m
+[32m+   Rendered tasks/index.html.erb within layouts/application (Duration: 5.1ms | Allocations: 3217)[m
+[32m+ Completed 200 OK in 25ms (Views: 23.0ms | ActiveRecord: 0.4ms | Allocations: 22038)[m
+[32m+ [m
+[32m+ [m
+[32m+ Started GET "/tasks" for ::1 at 2020-10-01 21:27:11 +0100[m
+[32m+ Processing by TasksController#index as HTML[m
+[32m+   Rendering tasks/index.html.erb within layouts/application[m
+[32m+   Rendered layouts/_top.html.erb (Duration: 2.6ms | Allocations: 2197)[m
+[32m+   [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" ORDER BY "tasks"."created_at" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 4], ["OFFSET", 0]][m
+[32m+   ↳ app/views/tasks/index.html.erb:15[m
+[32m+   Rendered layouts/_footer.html.erb (Duration: 0.1ms | Allocations: 5)[m
+[32m+   Rendered tasks/index.html.erb within layouts/application (Duration: 6.9ms | Allocations: 3205)[m
+[32m+ Completed 200 OK in 29ms (Views: 27.5ms | ActiveRecord: 0.5ms | Allocations: 21993)[m
+[32m+ [m
+[32m+ [m
+[32m+ Started GET "/tasks?sort_expired=true" for ::1 at 2020-10-01 21:27:13 +0100[m
+[32m+ Processing by TasksController#index as HTML[m
+[32m+   Parameters: {"sort_expired"=>"true"}[m
+[32m+   Rendering tasks/index.html.erb within layouts/application[m
+[32m+   Rendered layouts/_top.html.erb (Duration: 1.7ms | Allocations: 2197)[m
+[32m+   [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" ORDER BY "tasks"."end_time" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 4], ["OFFSET", 0]][m
+[32m+   ↳ app/views/tasks/index.html.erb:15[m
+[32m+   Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)[m
+[32m+   Rendered tasks/index.html.erb within layouts/application (Duration: 5.6ms | Allocations: 3208)[m
+[32m+ Completed 200 OK in 30ms (Views: 28.6ms | ActiveRecord: 0.5ms | Allocations: 21979)[m
+[32m+ [m
+[32m+ [m
+[32m+ DEPRECATION WARNING: Single arity template handlers are deprecated. Template handlers must[m
+[32m+ now accept two parameters, the view object and the source for the view object.[m
+[32m+ Change:[m
+[32m+   >> Coffee::Rails::TemplateHandler.call(template)[m
+[32m+ To:[m
+[32m+   >> Coffee::Rails::TemplateHandler.call(template, source)[m
+[32m+  (called from <main> at /home/wilromeo/Bureau/TasksApp/config/environment.rb:5)[m
+[32m+ An enum element in Task uses the prefix 'not_'. This will cause a conflict with auto generated negative scopes.[m
+[32m+ Creating scope :not_started. Overwriting existing method Task.not_started.[m
+[32m+ Started GET "/tasks?utf8=%E2%9C%93&name=rose&statut=0&commit=search" for ::1 at 2020-10-01 23:08:47 +0100[m
+[32m+   [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m[m
+[32m+   [m
+[32m+ ActiveRecord::PendingMigrationError ([m
+[32m+ [m
+[32m+ Migrations are pending. To resolve this issue, run:[m
+[32m+ [m
+[32m+         rails db:migrate RAILS_ENV=development[m
+[32m+ [m
+[32m+ ):[m
+[32m+   [m
+[32m+ activerecord (6.0.3.3) lib/active_record/migration.rb:586:in `check_pending!'[m
+[32m+ activerecord (6.0.3.3) lib/active_record/migration.rb:564:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'[m
+[32m+ activesupport (6.0.3.3) lib/active_support/callbacks.rb:101:in `run_callbacks'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/executor.rb:14:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'[m
+[32m+ web-console (4.0.4) lib/web_console/middleware.rb:132:in `call_app'[m
+[32m+ web-console (4.0.4) lib/web_console/middleware.rb:28:in `block in call'[m
+[32m+ web-console (4.0.4) lib/web_console/middleware.rb:17:in `catch'[m
+[32m+ web-console (4.0.4) lib/web_console/middleware.rb:17:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'[m
+[32m+ railties (6.0.3.3) lib/rails/rack/logger.rb:37:in `call_app'[m
+[32m+ railties (6.0.3.3) lib/rails/rack/logger.rb:26:in `block in call'[m
+[32m+ activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:80:in `block in tagged'[m
+[32m+ activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:28:in `tagged'[m
+[32m+ activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:80:in `tagged'[m
+[32m+ railties (6.0.3.3) lib/rails/rack/logger.rb:26:in `call'[m
+[32m+ sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'[m
+[32m+ rack (2.2.3) lib/rack/method_override.rb:24:in `call'[m
+[32m+ rack (2.2.3) lib/rack/runtime.rb:22:in `call'[m
+[32m+ activesupport (6.0.3.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/executor.rb:14:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/static.rb:126:in `call'[m
+[32m+ rack (2.2.3) lib/rack/sendfile.rb:110:in `call'[m
+[32m+ actionpack (6.0.3.3) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'[m
+[32m+ railties (6.0.3.3) lib/rails/engine.rb:527:in `call'[m
+[32m+ puma (3.12.6) lib/puma/configuration.rb:227:in `call'[m
+[32m+ puma (3.12.6) lib/puma/server.rb:706:in `handle_request'[m
+[32m+ puma (3.12.6) lib/puma/server.rb:476:in `process_client'[m
+[32m+ puma (3.12.6) lib/puma/server.rb:334:in `block in run'[m
+[32m+ puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'[m
+[32m+ DEPRECATION WARNING: Single arity template handlers are deprecated. Template handlers must[m
+[32m+ now accept two parameters, the view object and the source for the view object.[m
+[32m+ Change:[m
+[32m+   >> Coffee::Rails::TemplateHandler.call(template)[m
+[32m+ To:[m
+[32m+   >> Coffee::Rails::TemplateHandler.call(template, source)[m
+[32m+  (called from <main> at /home/wilromeo/Bureau/TasksApp/config/environment.rb:5)[m
+[32m+ An enum element in Task uses the prefix 'not_'. This will cause a conflict with auto generated negative scopes.[m
+[32m+ Creating scope :not_started. Overwriting existing method Task.not_started.[m
+[32m+   [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8729435605278092565)[0m[m
+[32m+   [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m[m
+[32m+ Migrating to CreateTasks (20200909145834)[m
+[32m+   [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m[m
+[32m+   [1m[35m (2.1ms)[0m  [1m[35mCREATE TABLE "tasks" ("id" bigserial primary key, "name" character varying NOT NULL, "content" text NOT NULL, "end_time" date NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m[m
+[32m+   [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m[m
+[32m+   [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(8729435605278092565)[0m[m
+[32m+ DEPRECATION WARNING: Single arity template handlers are deprecated. Template handlers must[m
+[32m+ now accept two parameters, the view object and the source for the view object.[m
+[32m+ Change:[m
+[32m+   >> Coffee::Rails::TemplateHandler.call(template)[m
+[32m+ To:[m
+[32m+   >> Coffee::Rails::TemplateHandler.call(template, source)[m
+[32m+  (called from <main> at /home/wilromeo/Bureau/TasksApp/config/environment.rb:5)[m
+[32m+ An enum element in Task uses the prefix 'not_'. This will cause a conflict with auto generated negative scopes.[m
+[32m+ Creating scope :not_started. Overwriting existing method Task.not_started.[m
+[32m+   [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m[m
+[32m+   [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]][m
+[32m+   [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m[m
+[32m+   [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]][m
+[32m+   [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m[m
+[32m+   [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]][m
+[32m+   [1m[35m (620.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "TasksApp_development"[0m[m
+[32m+   [1m[35m (333.7ms)[0m  [1m[35mDROP DATABASE IF EXISTS "TasksApp_test"[0m[m
+[32m+ DEPRECATION WARNING: Single arity template handlers are deprecated. Template handlers must[m
+[32m+ now accept two parameters, the view object and the source for the view object.[m
+[32m+ Change:[m
+[32m+   >> Coffee::Rails::TemplateHandler.call(template)[m
+[32m+ To:[m
+[32m+   >> Coffee::Rails::TemplateHandler.call(template, source)[m
+[32m+  (called from <main> at /home/wilromeo/Bureau/TasksApp/config/environment.rb:5)[m
+[32m+ An enum element in Task uses the prefix 'not_'. This will cause a conflict with auto generated negative scopes.[m
+[32m+ Creating scope :not_started. Overwriting existing method Task.not_started.[m
+[32m+   [1m[35m (931.3ms)[0m  [1m[35mCREATE DATABASE "TasksApp_development" ENCODING = 'unicode'[0m[m
+[32m+   [1m[35m (827.4ms)[0m  [1m[35mCREATE DATABASE "TasksApp_test" ENCODING = 'unicode'[0m[m
+[32m+ DEPRECATION WARNING: Single arity template handlers are deprecated. Template handlers must[m
+[32m+ now accept two parameters, the view object and the source for the view object.[m
+[32m+ Change:[m
+[32m+   >> Coffee::Rails::TemplateHandler.call(template)[m
+[32m+ To:[m
+[32m+   >> Coffee::Rails::TemplateHandler.call(template, source)[m
+[32m+  (called from <main> at /home/wilromeo/Bureau/TasksApp/config/environment.rb:5)[m
+[32m+ An enum element in Task uses the prefix 'not_'. This will cause a conflict with auto generated negative scopes.[m
+[32m+ Creating scope :not_started. Overwriting existing method Task.not_started.[m
+[32m+   [1m[35m (216.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m[m
+[32m+   [1m[35m (83.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m[m
+[32m+   [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8729435605278092565)[0m[m
+[32m+   [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m[m
+[32m+ Migrating to CreateTasks (20200909145834)[m
+[32m+   [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m[m
+[32m+   [1m[35m (83.1ms)[0m  [1m[35mCREATE TABLE "tasks" ("id" bigserial primary key, "name" character varying NOT NULL, "content" text NOT NULL, "end_time" date NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m[m
+[32m+   [1m[36mprimary::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200909145834"]][m
+[32m+   [1m[35m (17.9ms)[0m  [1m[35mCOMMIT[0m[m
+[32m+ Migrating to AddColumnToTask (20200915093425)[m
+[32m+   [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m[m
+[32m+   [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "tasks" ADD "s

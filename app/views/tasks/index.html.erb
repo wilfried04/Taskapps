@@ -1,0 +1,29 @@
+<%=render 'layouts/top'%>
+
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" >Task name</th>
+      <th scope="col" >Task content</th>
+      <th scope="col">deadilne</th>
+      <th scope="col">Statut</th>
+      <th scope="col">priority</th>
+    </tr>
+  </thead>
+  <tbody>
+      <%@tasks.each do |task|%>
+    <tr>
+      <td><%=link_to "#{task.name}", task_path(task.id)%></td>
+      <td><%=task.content%></td>
+      <td><%=task.end_time%></td>
+      <td><%=task.statut%></td>
+      <td><%=task.priority%></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class="page">
+  <%= paginate @tasks %>
+</div>
+<%=render 'layouts/footer'%>
