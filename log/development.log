@@ -19869,3 +19869,168 @@ To:
  (called from <main> at /home/wilromeo/Bureau/TasksApp-step4/config/environment.rb:5)
 An enum element in Task uses the prefix 'not_'. This will cause a conflict with auto generated negative scopes.
 Creating scope :not_started. Overwriting existing method Task.not_started.
+DEPRECATION WARNING: Single arity template handlers are deprecated. Template handlers must
+now accept two parameters, the view object and the source for the view object.
+Change:
+  >> Coffee::Rails::TemplateHandler.call(template)
+To:
+  >> Coffee::Rails::TemplateHandler.call(template, source)
+ (called from <main> at /home/wilromeo/Bureau/TasksApp-step4/config/environment.rb:5)
+An enum element in Task uses the prefix 'not_'. This will cause a conflict with auto generated negative scopes.
+Creating scope :not_started. Overwriting existing method Task.not_started.
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "kpondehou@gmail.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at", "admin") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "kpondehou"], ["email", "kpondehou@gmail.com"], ["password_digest", "$2a$12$oPnxYJyKo07OmNGE8id7lu/i23Hb9ofecP2SfQ9HcSlr4Yr4wupRi"], ["created_at", "2020-10-12 12:21:26.972442"], ["updated_at", "2020-10-12 12:21:26.972442"], ["admin", true]]
+  [1m[35m (24.0ms)[0m  [1m[35mCOMMIT[0m
+DEPRECATION WARNING: Single arity template handlers are deprecated. Template handlers must
+now accept two parameters, the view object and the source for the view object.
+Change:
+  >> Coffee::Rails::TemplateHandler.call(template)
+To:
+  >> Coffee::Rails::TemplateHandler.call(template, source)
+ (called from <main> at /home/wilromeo/Bureau/TasksApp-step4/config/environment.rb:5)
+An enum element in Task uses the prefix 'not_'. This will cause a conflict with auto generated negative scopes.
+Creating scope :not_started. Overwriting existing method Task.not_started.
+Started GET "/" for ::1 at 2020-10-13 09:45:59 +0100
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#new as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:3:in `current_user'
+Redirected to http://localhost:3000/users/2
+Filter chain halted as :login_check rendered or redirected
+Completed 302 Found in 39ms (ActiveRecord: 13.6ms | Allocations: 6148)
+
+
+Started GET "/users/2" for ::1 at 2020-10-13 09:45:59 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:56:in `set_user'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:3:in `current_user'
+  Rendering users/show.html.erb within layouts/application
+  Rendered layouts/_search.html.erb (Duration: 2054.0ms | Allocations: 187768)
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/views/users/show.html.erb:15
+  Rendered layouts/_footer.html.erb (Duration: 12.1ms | Allocations: 87)
+  Rendered users/show.html.erb within layouts/application (Duration: 2156.8ms | Allocations: 192699)
+Completed 200 OK in 4124ms (Views: 4087.7ms | ActiveRecord: 3.1ms | Allocations: 510153)
+
+
+Started GET "/admin/users/new" for ::1 at 2020-10-13 09:47:06 +0100
+Processing by Admin::UsersController#new as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:3:in `current_user'
+  Rendering admin/users/new.html.erb within layouts/application
+  Rendered admin/users/new.html.erb within layouts/application (Duration: 15.3ms | Allocations: 1738)
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 0.4ms | Allocations: 3990)
+
+
+  
+ActionView::Template::Error (Missing partial layouts/_user_top with {:locale=>[:ja], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/home/wilromeo/Bureau/TasksApp-step4/app/views"
+  * "/home/wilromeo/.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/gems/kaminari-core-1.2.1/app/views"
+  * "/home/wilromeo/.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/gems/actiontext-6.0.3.3/app/views"
+  * "/home/wilromeo/.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/gems/actionmailbox-6.0.3.3/app/views"
+):
+    1: <%= render 'layouts/user_top' %>
+    2: <div class="container">
+    3:   <div class="container loggin_form">
+    4:     <h2>create new user</h2>
+  
+app/views/admin/users/new.html.erb:1
+Started GET "/users/2" for ::1 at 2020-10-13 09:47:09 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:56:in `set_user'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:3:in `current_user'
+  Rendering users/show.html.erb within layouts/application
+  Rendered layouts/_search.html.erb (Duration: 3.2ms | Allocations: 2921)
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/views/users/show.html.erb:15
+  Rendered layouts/_footer.html.erb (Duration: 0.1ms | Allocations: 5)
+  Rendered users/show.html.erb within layouts/application (Duration: 6.7ms | Allocations: 3862)
+Completed 200 OK in 47ms (Views: 41.6ms | ActiveRecord: 1.3ms | Allocations: 24782)
+
+
+Started GET "/admin/users" for ::1 at 2020-10-13 09:47:11 +0100
+Processing by Admin::UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:3:in `current_user'
+  Rendering admin/users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY created_at DESC[0m
+  ↳ app/views/admin/users/index.html.erb:37
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/views/admin/users/index.html.erb:41
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/admin/users/index.html.erb:41
+  Rendered layouts/_footer.html.erb (Duration: 0.1ms | Allocations: 6)
+  Rendered admin/users/index.html.erb within layouts/application (Duration: 567.3ms | Allocations: 3329)
+Completed 200 OK in 606ms (Views: 600.5ms | ActiveRecord: 2.3ms | Allocations: 23761)
+
+
+Started GET "/users/2" for ::1 at 2020-10-13 09:47:15 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:56:in `set_user'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:3:in `current_user'
+  Rendering users/show.html.erb within layouts/application
+  Rendered layouts/_search.html.erb (Duration: 3.6ms | Allocations: 2908)
+  [1m[36mTask Load (1.8ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/views/users/show.html.erb:15
+  Rendered layouts/_footer.html.erb (Duration: 0.1ms | Allocations: 5)
+  Rendered users/show.html.erb within layouts/application (Duration: 8.8ms | Allocations: 3826)
+Completed 200 OK in 63ms (Views: 55.7ms | ActiveRecord: 2.6ms | Allocations: 24678)
+
+
+DEPRECATION WARNING: Single arity template handlers are deprecated. Template handlers must
+now accept two parameters, the view object and the source for the view object.
+Change:
+  >> Coffee::Rails::TemplateHandler.call(template)
+To:
+  >> Coffee::Rails::TemplateHandler.call(template, source)
+ (called from <main> at /home/wilromeo/Bureau/TasksApp-step4/config/environment.rb:5)
+An enum element in Task uses the prefix 'not_'. This will cause a conflict with auto generated negative scopes.
+Creating scope :not_started. Overwriting existing method Task.not_started.
+Started GET "/" for ::1 at 2020-10-13 09:49:48 +0100
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#new as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:3:in `current_user'
+Redirected to http://localhost:3000/users/2
+Filter chain halted as :login_check rendered or redirected
+Completed 302 Found in 30ms (ActiveRecord: 8.0ms | Allocations: 6148)
+
+
+Started GET "/users/2" for ::1 at 2020-10-13 09:49:48 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:56:in `set_user'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:3:in `current_user'
+  Rendering users/show.html.erb within layouts/application
+  Rendered layouts/_search.html.erb (Duration: 54.9ms | Allocations: 187763)
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/views/users/show.html.erb:15
+  Rendered layouts/_footer.html.erb (Duration: 0.5ms | Allocations: 87)
+  Rendered users/show.html.erb within layouts/application (Duration: 68.9ms | Allocations: 192694)
+Completed 200 OK in 340ms (Views: 330.0ms | ActiveRecord: 3.5ms | Allocations: 510148)
+
+
+Started GET "/admin/users/new" for ::1 at 2020-10-13 09:49:56 +0100
+Processing by Admin::UsersController#new as HTML
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:3:in `current_user'
+  Rendering admin/users/new.html.erb within layouts/application
+  Rendered admin/users/_form.html.erb (Duration: 341.5ms | Allocations: 2663)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+  Rendered admin/users/new.html.erb within layouts/application (Duration: 343.2ms | Allocations: 3086)
+Completed 200 OK in 382ms (Views: 377.0ms | ActiveRecord: 1.0ms | Allocations: 24055)
+
+
