@@ -21258,3 +21258,108 @@ To:
  (called from <main> at /home/wilromeo/Bureau/TasksApp-step4/config/environment.rb:5)
 An enum element in Task uses the prefix 'not_'. This will cause a conflict with auto generated negative scopes.
 Creating scope :not_started. Overwriting existing method Task.not_started.
+DEPRECATION WARNING: Single arity template handlers are deprecated. Template handlers must
+now accept two parameters, the view object and the source for the view object.
+Change:
+  >> Coffee::Rails::TemplateHandler.call(template)
+To:
+  >> Coffee::Rails::TemplateHandler.call(template, source)
+ (called from <main> at /home/wilromeo/Bureau/TasksApp-step4/config/environment.rb:5)
+An enum element in Task uses the prefix 'not_'. This will cause a conflict with auto generated negative scopes.
+Creating scope :not_started. Overwriting existing method Task.not_started.
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8729435605278092565)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to Labels (20201015110507)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(8729435605278092565)[0m
+DEPRECATION WARNING: Single arity template handlers are deprecated. Template handlers must
+now accept two parameters, the view object and the source for the view object.
+Change:
+  >> Coffee::Rails::TemplateHandler.call(template)
+To:
+  >> Coffee::Rails::TemplateHandler.call(template, source)
+ (called from <main> at /home/wilromeo/Bureau/TasksApp-step4/config/environment.rb:5)
+An enum element in Task uses the prefix 'not_'. This will cause a conflict with auto generated negative scopes.
+Creating scope :not_started. Overwriting existing method Task.not_started.
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8729435605278092565)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to Labels (20201015110507)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(8729435605278092565)[0m
+DEPRECATION WARNING: Single arity template handlers are deprecated. Template handlers must
+now accept two parameters, the view object and the source for the view object.
+Change:
+  >> Coffee::Rails::TemplateHandler.call(template)
+To:
+  >> Coffee::Rails::TemplateHandler.call(template, source)
+ (called from <main> at /home/wilromeo/Bureau/TasksApp-step4/config/environment.rb:5)
+An enum element in Task uses the prefix 'not_'. This will cause a conflict with auto generated negative scopes.
+Creating scope :not_started. Overwriting existing method Task.not_started.
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8729435605278092565)[0m
+  [1m[35m (33.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to Labels (20201015110507)
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(8729435605278092565)[0m
+DEPRECATION WARNING: Single arity template handlers are deprecated. Template handlers must
+now accept two parameters, the view object and the source for the view object.
+Change:
+  >> Coffee::Rails::TemplateHandler.call(template)
+To:
+  >> Coffee::Rails::TemplateHandler.call(template, source)
+ (called from <main> at /home/wilromeo/Bureau/TasksApp-step4/config/environment.rb:5)
+An enum element in Task uses the prefix 'not_'. This will cause a conflict with auto generated negative scopes.
+Creating scope :not_started. Overwriting existing method Task.not_started.
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8729435605278092565)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to Labels (20201015110507)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (498.1ms)[0m  [1m[35mCREATE TABLE "labels" ("id" bigserial primary key, "name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201015110507"]]
+  [1m[35m (20.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to Labellings (20201015115819)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (237.6ms)[0m  [1m[35mCREATE TABLE "labellings" ("id" bigserial primary key, "task_id" bigint, "label_id" bigint, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_6605447ae9"
+FOREIGN KEY ("task_id")
+  REFERENCES "tasks" ("id")
+, CONSTRAINT "fk_rails_7d68883747"
+FOREIGN KEY ("label_id")
+  REFERENCES "labels" ("id")
+)[0m
+  [1m[35m (44.1ms)[0m  [1m[35mCREATE  INDEX  "index_labellings_on_task_id" ON "labellings"  ("task_id")[0m
+  [1m[35m (38.7ms)[0m  [1m[35mCREATE  INDEX  "index_labellings_on_label_id" ON "labellings"  ("label_id")[0m
+  [1m[35m (1.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_advisory_unlock(8729435605278092565)[0m
+DEPRECATION WARNING: Single arity template handlers are deprecated. Template handlers must
+now accept two parameters, the view object and the source for the view object.
+Change:
+  >> Coffee::Rails::TemplateHandler.call(template)
+To:
+  >> Coffee::Rails::TemplateHandler.call(template, source)
+ (called from <main> at /home/wilromeo/Bureau/TasksApp-step4/config/environment.rb:5)
+An enum element in Task uses the prefix 'not_'. This will cause a conflict with auto generated negative scopes.
+Creating scope :not_started. Overwriting existing method Task.not_started.
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8729435605278092565)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to Labellings (20201015115819)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (93.6ms)[0m  [1m[35mCREATE TABLE "labellings" ("id" bigserial primary key, "task_id" bigint, "label_id" bigint, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_6605447ae9"
+FOREIGN KEY ("task_id")
+  REFERENCES "tasks" ("id")
+, CONSTRAINT "fk_rails_7d68883747"
+FOREIGN KEY ("label_id")
+  REFERENCES "labels" ("id")
+)[0m
+  [1m[35m (45.4ms)[0m  [1m[35mCREATE  INDEX  "index_labellings_on_task_id" ON "labellings"  ("task_id")[0m
+  [1m[35m (49.3ms)[0m  [1m[35mCREATE  INDEX  "index_labellings_on_label_id" ON "labellings"  ("label_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201015115819"]]
+  [1m[35m (17.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddUserRefToLabels (20201015120139)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "labels" ADD "user_id" bigint[0m
+  [1m[35m (38.8ms)[0m  [1m[35mCREATE  INDEX  "index_labels_on_user_id" ON "labels"  ("user_id")[0m
+  [1m[35m (19.8ms)[0m  [1m[35mALTER TABLE "labels" ADD CONSTRAINT "fk_rails_9ea980b469"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201015120139"]]
+  [1m[35m (38.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (31.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(8729435605278092565)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m

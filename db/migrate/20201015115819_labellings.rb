@@ -5,6 +5,5 @@ class Labellings < ActiveRecord::Migration[6.0]
       t.references :label, foreign_key:true
       t.timestamps
     end
-  en
   end
 end
