@@ -7,9 +7,9 @@
       </div>
       <div class="right">
         <%if current_user.admin? %>
-        <span class=""><%=link_to "users list",admin_users_path %></span>
-        <span class=""><%= link_to "create new user", new_admin_user_path %></span>
-        <span class=""><%= link_to "admin tasks", user_path(current_user.id) %></span>
+        <span class=""><%=link_to "Users",admin_users_path %></span>
+        <span class=""><%= link_to "New user", new_admin_user_path %></span>
+        <span class=""><%= link_to "Admin tasks", user_path(current_user.id) %></span>
         <%end%>
       </div>
     </div>
@@ -28,7 +28,7 @@
         <tr>
             <th>User name</th>
             <th>Admin</th>
-            <th>task count</th>
+            <th>Task count</th>
             <th colspan="3"></th>
         </tr>
     </thead>
@@ -39,8 +39,8 @@
                 <td><%= link_to "#{user.name}", admin_user_path(user)%></td>
                 <td><%= user.admin %></td>
                 <td><%= user.tasks.count %></td>
-                <td><%= link_to "edit role", edit_admin_user_path(user),:class=>"fas fa-user-edit" %></td>
-                <td><%= link_to "destroy", admin_user_path(user), method: :delete, data: { confirm: 'are you sure ?' },:class=>"far fa-trash-alt" %></td>
+                <td><%= link_to "Edit role", edit_admin_user_path(user),:class=>"fas fa-user-edit" %></td>
+                <td><%= link_to "Destroy", admin_user_path(user), method: :delete, data: { confirm: 'are you sure ?' },:class=>"far fa-trash-alt" %></td>
             </tr>
         <% end %>
         <tr>
