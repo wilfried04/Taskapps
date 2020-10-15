@@ -21198,3 +21198,54 @@ Processing by Admin::UsersController#index as HTML
 Completed 200 OK in 87ms (Views: 46.1ms | ActiveRecord: 4.6ms | Allocations: 28581)
 
 
+DEPRECATION WARNING: Single arity template handlers are deprecated. Template handlers must
+now accept two parameters, the view object and the source for the view object.
+Change:
+  >> Coffee::Rails::TemplateHandler.call(template)
+To:
+  >> Coffee::Rails::TemplateHandler.call(template, source)
+ (called from <main> at /home/wilromeo/Bureau/TasksApp-step4/config/environment.rb:5)
+An enum element in Task uses the prefix 'not_'. This will cause a conflict with auto generated negative scopes.
+Creating scope :not_started. Overwriting existing method Task.not_started.
+Started GET "/" for ::1 at 2020-10-15 05:47:42 +0100
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#new as HTML
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:3:in `current_user'
+Redirected to http://localhost:3000/users/4
+Filter chain halted as :login_check rendered or redirected
+Completed 302 Found in 47ms (ActiveRecord: 7.3ms | Allocations: 6205)
+
+
+Started GET "/users/4" for ::1 at 2020-10-15 05:47:42 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:56:in `set_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:3:in `current_user'
+  Rendering users/show.html.erb within layouts/application
+  Rendered layouts/_search.html.erb (Duration: 2548.7ms | Allocations: 201768)
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 4]]
+  ↳ app/views/users/show.html.erb:15
+  Rendered layouts/_footer.html.erb (Duration: 15.0ms | Allocations: 87)
+  Rendered users/show.html.erb within layouts/application (Duration: 2668.9ms | Allocations: 206699)
+Started GET "/users/4" for ::1 at 2020-10-15 05:47:46 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:56:in `set_user'
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:3:in `current_user'
+  Rendering users/show.html.erb within layouts/application
+  Rendered layouts/_search.html.erb (Duration: 2.1ms | Allocations: 2909)
+  [1m[36mTask Load (1.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 4]]
+  ↳ app/views/users/show.html.erb:15
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+  Rendered users/show.html.erb within layouts/application (Duration: 6.6ms | Allocations: 4613)
+Completed 200 OK in 303ms (Views: 294.4ms | ActiveRecord: 2.8ms | Allocations: 39417)
+
+
+Completed 200 OK in 3706ms (Views: 3659.1ms | ActiveRecord: 4.6ms | Allocations: 553398)
+
+

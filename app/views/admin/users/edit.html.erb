@@ -21,8 +21,12 @@
        <%= f.label :admin %>
        <%= f.check_box :admin,{}, "true","false" %><br>
        
-       <%= f.hidden_field :password,:class=>"form-control",:id=>"exampleInputPassword1" %>
-       <%= f.hidden_field :password_confirmation,:class=>"form-control",:id=>"exampleInputPassword1" %>
+       <%= f.hidden_field :password,
+                          :class=>"form-control",
+                          :id=>"exampleInputPassword1" %>
+       <%= f.hidden_field :password_confirmation,
+                          :class=>"form-control",
+                          :id=>"exampleInputPassword1" %>
       <br>
        <%= f.submit :class=>"btn btn-primary"%>
        <% end %>
