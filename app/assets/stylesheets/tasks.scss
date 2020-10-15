@@ -2,14 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 a{
-  color:#31c30c;
+  color:#1e0cc3;
 }
 a:hover{
   text-decoration: none;
   color:blue;
 }
 .search{
-  margin: 5px;
+  margin: 0px;
 }
 .task_list_header{
   background-color: #152ddf;
@@ -24,7 +24,7 @@ a:hover{
 }
 footer {
   width: 100%;
-  background-color:#31c30c;
+  background-color:#0ea7ce;
   padding: 10px 0 5px 0;
   color: black;
   margin: auto;
@@ -36,7 +36,7 @@ footer {
 }
 // show labels
 .label span{
-  background-color: #F1F4E8;
+  color: #171808;
 }
 .label .trash{
   color: red;

@@ -11,12 +11,18 @@ h3{
 }
 .search{
   text-align: center;
+  background-color: rgb(172, 243, 248);
+  color: rgb(126, 29, 150);
+  height:40px;
 }
 .search input{
   width: auto;
   opacity:0.6;
 }
 .nav-top a{
-  color: #686e74;
-  font-size: 20px;
+  color: #89bdf0;
+  font-size: 15px;
+}
+.action{
+  height: 50px;
 }
