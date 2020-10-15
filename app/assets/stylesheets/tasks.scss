@@ -34,3 +34,21 @@ footer {
   bottom: 0;
   text-align: center;
 }
+// show labels
+.label span{
+  background-color: #F1F4E8;
+}
+.label .trash{
+  color: red;
+  font-size: 12px;
+}
+.loggin_form span a{
+  font-size: 15px;
+  color: black;
+  background-color: #F1F4E8;
+  float: right;
+  position: relative;
+    bottom: 30px;
+    right: 30px;
+padding: 0px 10px 0px 10px;
+}

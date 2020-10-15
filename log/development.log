@@ -21249,3 +21249,12 @@ Completed 200 OK in 303ms (Views: 294.4ms | ActiveRecord: 2.8ms | Allocations: 3
 Completed 200 OK in 3706ms (Views: 3659.1ms | ActiveRecord: 4.6ms | Allocations: 553398)
 
 
+DEPRECATION WARNING: Single arity template handlers are deprecated. Template handlers must
+now accept two parameters, the view object and the source for the view object.
+Change:
+  >> Coffee::Rails::TemplateHandler.call(template)
+To:
+  >> Coffee::Rails::TemplateHandler.call(template, source)
+ (called from <main> at /home/wilromeo/Bureau/TasksApp-step4/config/environment.rb:5)
+An enum element in Task uses the prefix 'not_'. This will cause a conflict with auto generated negative scopes.
+Creating scope :not_started. Overwriting existing method Task.not_started.
