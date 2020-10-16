@@ -21,40 +21,9 @@ RSpec.describe 'label Management Function', type: :system do
 
   describe 'Label managing' do
     context 'If the label is not registered' do
-      it 'regritre Labels in Tasks' do
-        visit new_task_path
-        fill_in 'task_name', with: 'task1'
-        fill_in 'task_content', with: 'content1'
-        select 'low', from: 'task_priority'
-        select 'not_started', from: 'task_statut'
-        #binding.irb
-        find(:css, "#task_label_ids_1[value='1']").set(true)
-        click_on 'Create Task'
 
-        expect(page).to have_content 'label1'
-      end
-      it 'Registe Multiple Labels in a Task' do
-        visit new_task_path
-        fill_in 'task_name', with: 'task1'
-        fill_in 'task_content', with: 'content1'
-        select 'medium', from: 'task_priority'
-        select 'started', from: 'task_statut'
 
-        find(:css, "#task_label_ids_3[value='3']").set(true)
-        find(:css, "#task_label_ids_4[value='4']").set(true)
-
-        click_on 'Create Task'
-        expect(page).to have_content 'label1'
-        expect(page).to have_content 'label2'
-      end
     end
-    context `If the task list is not sorted` do
-      it 'Tasks can be searched by label.' do
-          visit tasks_path
-          select 'label1', from: 'label_id'
-          click_button 'Search'
-          expect(page).to have_content 'label1'
-      end
-    end
+
   end
 end
