@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
     before_action :set_user, only:[:show, :edit, :update, :destroy]
     before_action :user_check, only: [:index,:show,:edit, :update, :destroy]
-    before_action :login_check, only:[:new, :index]
+    before_action :login_check, only:[:new, :index, :edit]
   
     #def admin_user
      # redirect_to(root_url) unless current_user && current_user.admin?

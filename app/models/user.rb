@@ -8,6 +8,7 @@ class User < ApplicationRecord
     has_secure_password
     has_many :tasks, dependent: :destroy
 
+    has_many :labels, dependent: :destroy
     private
     def destroy_admin
       if User.where(admin: true).count == 1

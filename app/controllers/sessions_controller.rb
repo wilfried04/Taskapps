@@ -7,11 +7,11 @@ class SessionsController < ApplicationController
       user = User.find_by(email: params[:session][:email].downcase)
       if user && user.authenticate(params[:session][:password])
         session[:user_id] = user.id
-        flash.now[:success] = 'well done!'
+        flash.now[:success] = 'Authenticate Success!'
         redirect_to admin_users_path
       else
         redirect_to new_session_path
-        flash[:danger] = 'something is wrong'
+        flash[:danger] = 'wrong Action!!!'
       end
     end
 

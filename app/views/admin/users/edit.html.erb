@@ -21,8 +21,12 @@
        <%= f.label :admin %>
        <%= f.check_box :admin,{}, "true","false" %><br>
        
-       <%= f.hidden_field :password,:class=>"form-control",:id=>"exampleInputPassword1" %>
-       <%= f.hidden_field :password_confirmation,:class=>"form-control",:id=>"exampleInputPassword1" %>
+       <%= f.hidden_field :password,
+                          :class=>"form-control",
+                          :id=>"exampleInputPassword1" %>
+       <%= f.hidden_field :password_confirmation,
+                          :class=>"form-control",
+                          :id=>"exampleInputPassword1" %>
       <br>
        <%= f.submit :class=>"btn btn-primary"%>
        <% end %>
@@ -31,6 +35,6 @@
   </div>
 </div>
 <div class="">
-  <p id="loggin_form"> or <span class="badge badge-pill badge-light"><%=link_to "login",new_session_path %></span></p>
+  <p id="loggin_form"> <span class="badge badge-pill badge-light"><%=link_to "login",new_session_path %></span></p>
 </div>
 <%=render 'layouts/footer'%>
